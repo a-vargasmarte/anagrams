@@ -27,6 +27,7 @@ html,
 body {
   height: 100%;
   background-color: rgb(4, 4, 2);
+  overflow: hidden;
 }
 
 /* Header Parallax Element Style*/
