@@ -4,6 +4,7 @@ from findAnagrams import findAnagrams
 
 app = Flask(__name__)
 
+ENV = 'dev'
 if ENV == 'dev':
     app.debug = True
 else:
