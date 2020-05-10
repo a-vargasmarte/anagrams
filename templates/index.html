@@ -11,58 +11,65 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../static/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
   </head>
   <body>
     <div class="jumbotron paral paralsec">
       <h1 class="display-3">Anagrams</h1>
       <p class="lead">Compare or find Anagrams!</p>
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="alert-div"></div>
+            <form class="form-group col-md-6" id="compare-form">
+              <label class="display-3" for="firstWord">First Word</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter first word"
+                id="compare-first-word"
+                name="firstWord"
+              />
+              <label for="secondWord">Second Word</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter second word"
+                id="compare-second-word"
+                name="secondWord"
+              />
+              <button type="button" id="compare-btn" class="btn btn-primary">
+                Compare!
+              </button>
+            </form>
+          </div>
 
-      <form
-        class="form-inline"
-        id="compare-form"
-        action="/api/anagrams/compare"
-        method="post"
-      >
-        <label class="display-3" for="firstWord">First Word</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter first word"
-          id="compare-first-word"
-          name="firstWord"
-        />
-        <label for="secondWord">Second Word</label>
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Enter second word"
-          id="compare-second-word"
-          name="secondWord"
-        />
-        <button type="submit" class="btn btn-primary">Compare!</button>
-      </form>
+          <div class="col-md-6">
+            <form
+              class="form-group"
+              id="find-form"
+              action="/api/anagrams/find"
+              method="post"
+            >
+              <div class="form-group">
+                <label for="corpus">Text</label>
+                <textarea
+                  id="corpus-textarea"
+                  class="form-control"
+                  name="corpus"
+                  rows="3"
+                ></textarea>
+              </div>
 
-      <form
-        class="form-inline"
-        id="find-form"
-        action="/api/anagrams/find"
-        method="post"
-      >
-        <div class="form-group">
-          <label for="corpus">Text</label>
-          <textarea
-            id="corpus-textarea"
-            class="form-control"
-            name="corpus"
-            rows="3"
-          ></textarea>
+              <button type="submit" class="btn btn-primary">Compare!</button>
+            </form>
+          </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">Compare!</button>
-      </form>
+      </div>
     </div>
-
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -78,6 +85,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="../static/js/index.js"></script>
   </body>
 </html>
