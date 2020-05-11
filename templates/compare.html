@@ -1,0 +1,34 @@
+{% extends "index.html" %} {% block head %} {{super()}} {% block title %}
+Compare {% endblock %} {% endblock %} {% block main_heading %} Compare {%
+endblock %} {% block main_description %} Choose two words or phrases and test if
+they're anagrams {% endblock %} {% block content%}
+<div class="col-md-4 card bg-light text-dark">
+  <div class="card-body" id="compare-card-body">
+    <div id="alert-div" class="col-md-12"></div>
+    <form class="form-group col-md-6" id="compare-form">
+      <label for="firstWord">First Word</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter first word"
+        id="compare-first-word"
+        name="firstWord"
+      />
+      <label for="secondWord">Second Word</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter second word"
+        id="compare-second-word"
+        name="secondWord"
+      />
+      <button type="button" id="compare-btn" class="btn btn-primary mt-3">
+        Compare!
+      </button>
+    </form>
+  </div>
+</div>
+
+{% endblock %} {% block template_script %} {{super()}}
+<script src="../static/js/compare.js"></script>
+{% endblock %}

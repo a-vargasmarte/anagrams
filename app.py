@@ -15,6 +15,17 @@ else:
 def index():
     return render_template('index.html')
 
+@app.route('/compare')
+def compareTemplate():
+    return render_template('compare.html')
+
+@app.route('/find')
+def findTemplate():
+    return render_template('find.html')
+
+
+
+
 @app.route('/api/anagrams/compare', methods=['POST'])
 def compare():
     if request.method == 'POST':

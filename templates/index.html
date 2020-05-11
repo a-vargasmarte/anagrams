@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% block head %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Anagrams</title>
+    <title>{% block title %}{% endblock%} - Anagrams</title>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -15,77 +16,21 @@
       rel="stylesheet"
       href="{{url_for('static', filename='css/style.css')}}"
     />
+    {% endblock %}
   </head>
   <body>
     <div class="jumbotron paral paralsec">
-      <h1>Anagrams</h1>
-      <p class="text-white">Compare or find Anagrams!</p>
+      <h1>{% block main_heading %}Anagrams{% endblock %}</h1>
+      <p class="text-white">
+        {% block main_description %}Compare or find Anagrams!{% endblock %}
+      </p>
       <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-4 card bg-light text-dark">
-            <div class="card-header">
-              <h2>Determine if any two words are anagrams</h2>
-            </div>
-            <div class="card-body" id="compare-card-body">
-              <div id="alert-div" class="col-md-12"></div>
-              <form class="form-group col-md-6" id="compare-form">
-                <label for="firstWord">First Word</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter first word"
-                  id="compare-first-word"
-                  name="firstWord"
-                />
-                <label for="secondWord">Second Word</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Enter second word"
-                  id="compare-second-word"
-                  name="secondWord"
-                />
-                <button
-                  type="button"
-                  id="compare-btn"
-                  class="btn btn-primary mt-3"
-                >
-                  Compare!
-                </button>
-              </form>
-            </div>
-          </div>
-          <div class="col-md-4"></div>
-          <div class="col-md-4 card bg-light text-dark">
-            <div class="card-header">
-              <h2>Find all anagrams in any body of text!</h2>
-            </div>
-            <div class="card-body">
-              <form
-                class="form-group col-md-6"
-                id="find-form"
-                action="/api/anagrams/find"
-                method="post"
-              >
-                <div class="form-group">
-                  <label for="corpus">Text</label>
-                  <textarea
-                    id="corpus-textarea"
-                    class="form-control"
-                    name="corpus"
-                    rows="3"
-                  ></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary">
-                  Find Anagrams!
-                </button>
-              </form>
-            </div>
-          </div>
+        <div class="row content">
+          {% block content %} {% endblock %}
         </div>
       </div>
     </div>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -103,6 +48,8 @@
     ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    {% block template_script %}
     <script src="../static/js/index.js"></script>
+    {% endblock %}
   </body>
 </html>

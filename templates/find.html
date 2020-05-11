@@ -1,0 +1,32 @@
+{% extends "index.html" %} {% block head %} {{super()}} {% block title %} Find
+{% endblock %} {% endblock %} {% block main_heading %} Find {% endblock %} {%
+block main_description %} Type body of text and find all single anagrams in it!
+{% endblock %} {% block content %}
+<div class="col-md-4 card bg-light text-dark">
+  <div class="card-body">
+    <form
+      class="form-group col-md-6"
+      id="find-form"
+      action="/api/anagrams/find"
+      method="post"
+    >
+      <div class="form-group">
+        <label for="corpus">Text</label>
+        <textarea
+          id="corpus-textarea"
+          class="form-control"
+          name="corpus"
+          rows="3"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">
+        Find Anagrams!
+      </button>
+    </form>
+  </div>
+</div>
+{% endblock %} {% block template_script%} {{super()}}
+<script src="../static/js/find.js"></script>
+
+{% endblock %}
