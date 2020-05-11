@@ -48,7 +48,6 @@ body {
 .paral p,
 .paral label {
   font-size: 24px;
-  color: #f5f5f5;
   text-align: center;
   line-height: 60px;
 }
@@ -58,11 +57,33 @@ body {
   color: rgba(255, 255, 255, 0.8);
   font-size: 60px;
   text-align: center;
-  padding-top: 60px;
+
   line-height: 100px;
 }
 
 /* Image for Parallax Section */
 .paralsec {
   background-image: url("../images/letters.jpg");
+}
+
+/* Cards */
+
+.card {
+  opacity: 0.8;
+}
+
+/* Forms */
+form {
+  opacity: 1;
+  margin: auto;
+}
+
+@media (max-width: 960px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .paral {
+    background-position: 45% 50%;
+  }
 }

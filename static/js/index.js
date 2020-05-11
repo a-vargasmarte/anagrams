@@ -46,7 +46,30 @@ $(document).ready(() => {
       axios
         .post("/api/anagrams/compare", wordsToCompare)
         .then(res => {
-          console.log(res);
+          $("iframe").remove();
+          let cardBody = $("#compare-card-body");
+          let resultContent = $("<div>", {
+            class: "col-md-6 mx-auto"
+          });
+
+          let resultImage = $("<iframe>", {
+            src: res.data
+              ? "https://giphy.com/embed/K2MbdWVYVV3Tq"
+              : "https://giphy.com/embed/TydZAW0DVCbGE",
+            width: "200",
+            height: "200",
+            frameBorder: "0",
+            class: "giphy-embed"
+          });
+          let resultLink = $("<a>", {
+            href: res.data
+              ? `https://giphy.com/gifs/giphyqa-K2MbdWVYVV3Tq`
+              : `https://giphy.com/gifs/sad-crying-spongebob-squarepants-TydZAW0DVCbGE`
+          });
+
+          resultImage.append(resultLink);
+          resultContent.append(resultImage);
+          cardBody.append(resultContent);
         })
         .catch(err => err);
     }
