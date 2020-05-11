@@ -4,12 +4,8 @@ block main_description %} Type body of text and find all single anagrams in it!
 {% endblock %} {% block content %}
 <div class="col-md-4 card bg-light text-dark">
   <div class="card-body">
-    <form
-      class="form-group col-md-6"
-      id="find-form"
-      action="/api/anagrams/find"
-      method="post"
-    >
+    <div id="alert-div" class="col-md-12"></div>
+    <form class="form-group col-md-6" id="find-form">
       <div class="form-group">
         <label for="corpus">Text</label>
         <textarea
@@ -20,13 +16,15 @@ block main_description %} Type body of text and find all single anagrams in it!
         ></textarea>
       </div>
 
-      <button type="submit" class="btn btn-primary">
+      <button type="button" class="btn btn-primary" id="find-btn">
         Find Anagrams!
       </button>
     </form>
   </div>
 </div>
 {% endblock %} {% block template_script%} {{super()}}
+<!-- load the d3.js library -->
+<script src="https://d3js.org/d3.v5.min.js"></script>
 <script src="../static/js/find.js"></script>
 
 {% endblock %}

@@ -23,15 +23,12 @@ def compareTemplate():
 def findTemplate():
     return render_template('find.html')
 
-
-
-
 @app.route('/api/anagrams/compare', methods=['POST'])
 def compare():
     if request.method == 'POST':
         data = request.get_json()
         if data['firstWord'] == '' or data['secondWord'] == '':
-            return render_template('index.html', message='Please enter both words!') 
+            return render_template('compare.html', message='Please enter both words!') 
 
         else:
             return  jsonify(isAnagram(data['firstWord'], data['secondWord']))
@@ -39,7 +36,11 @@ def compare():
 @app.route('/api/anagrams/find', methods=['POST'])
 def find():
     if request.method == 'POST':
-        return make_response(jsonify(findAnagrams(request.form['corpus'])), 200)
+        data = request.get_json()
+        if data['data'] == '':
+            return render_template('find.html', message='Make sure to enter text to analyze')
+        else:
+            return jsonify(findAnagrams(data['data']))
         
 
 

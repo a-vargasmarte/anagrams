@@ -2,7 +2,6 @@ import re
 from anagrams import orderAlphabetically
 from anagrams import split
 
-
 def tokenize(string):
     return string.split(' ')
 
@@ -14,7 +13,7 @@ def removePunctuation(string):
         if char not in punctuations:
             cleanString = cleanString + char
 
-    return cleanString
+    return cleanString.lower()
 
 
 def splitTokens(tokens):
@@ -49,11 +48,12 @@ def findUniqueLetterCombos(tokens):
         for j in range(len(tokens)):
             if joinedTokens[j] == orderedTokenSet[i]:
                 tokenDict["anagrams"].append(tokens[j])
+        tokenDict['anagrams'] = list(set(tokenDict['anagrams']))
         allAnagrams.append(tokenDict)
 
     return allAnagrams
 
 
 def findAnagrams(corpus):
-    tokens = tokenize(removePunctuation(corpus))
+    tokens = tokenize(removePunctuation(re.sub(r'\n+', ' ' , corpus)))
     return findUniqueLetterCombos(tokens)
