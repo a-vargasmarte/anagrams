@@ -24,9 +24,9 @@ $(document).ready(() => {
 
     if (corpus.data === "") {
       alertDiv.prepend(alertContent);
+      $("#find-result").empty();
     } else {
       alertDiv.empty();
-      $("svg").remove();
 
       postCorpus(corpus);
       // drawTree();
@@ -36,7 +36,8 @@ $(document).ready(() => {
     axios
       .post("/api/anagrams/find", corpus)
       .then(res => {
-        let cardParent = $("#find-card");
+        $("#find-result").empty();
+        let cardParent = $("#find-result");
 
         let filteredData = res.data.filter(
           pattern => pattern.anagrams.length >= 2
@@ -89,6 +90,8 @@ $(document).ready(() => {
 
           // append collapseDiv to parent div
           cardParent.append(collapseDiv);
+
+          $("#find-result").append(cardParent);
         });
       })
       .catch(err => err);
