@@ -27,7 +27,7 @@ html,
 body {
   height: 100%;
   background-color: rgb(4, 4, 2);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 /* Header Parallax Element Style*/
@@ -69,13 +69,17 @@ body {
 /* Cards */
 
 .card {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 /* Forms */
 form {
   opacity: 1;
   margin: auto;
+}
+
+textarea {
+  max-height: 150px;
 }
 
 @media (max-width: 960px) {

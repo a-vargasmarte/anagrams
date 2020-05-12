@@ -20,9 +20,14 @@
   </head>
   <body>
     <div class="jumbotron paral paralsec">
-      <h1>{% block main_heading %}Anagrams{% endblock %}</h1>
+      <h1 class="mt-3">{% block main_heading %}Anagrams{% endblock %}</h1>
       <p class="text-white">
-        {% block main_description %}Compare or find Anagrams!{% endblock %}
+        {% block main_description %}<button class="btn btn-outline-danger">
+          <a href="/compare">Compare</a>
+        </button>
+        or
+        <button class="btn btn-outline-danger"><a href="/find">Find</a></button>
+        Anagrams!{% endblock %}
       </p>
       <div class="col-md-12">
         <div class="row content">

@@ -26,23 +26,71 @@ $(document).ready(() => {
       alertDiv.prepend(alertContent);
     } else {
       alertDiv.empty();
+      $("svg").remove();
 
       postCorpus(corpus);
-      drawTree();
+      // drawTree();
     }
   });
   function postCorpus(corpus) {
     axios
       .post("/api/anagrams/find", corpus)
       .then(res => {
-        let treeData = res.data.filter(
-          pattern => [...new Set(pattern.anagrams)].length >= 2
+        let cardParent = $("#find-card");
+
+        let filteredData = res.data.filter(
+          pattern => pattern.anagrams.length >= 2
         );
 
-        console.log(treeData);
+        filteredData.map((anagram, i) => {
+          // create cards and add content
+
+          let corpusContent = $("<div>", {
+            class: "col-md-12 card"
+          });
+          let cardHeader = $("<div>", {
+            class: "card-header"
+          });
+          let anagramHeader = $("<h5>", { class: "mb-0" });
+
+          let collapseButton = $("<button>", {
+            class: "btn btn-link",
+            "data-toggle": "collapse",
+            "data-target": `#collapse${i}`,
+            "aria-expanded": "true",
+            "aria-controls": `collapse${i}`
+          }).text(`Pattern: ${anagram.pattern}`);
+
+          anagramHeader.append(collapseButton);
+
+          cardHeader.append(anagramHeader);
+          corpusContent.append(cardHeader);
+
+          // append corpusContent to parent div
+          cardParent.append(corpusContent);
+
+          let collapseDiv = $("<div>", {
+            id: `collapse${i}`,
+            class: `collapse ${i === 0 ? "show" : ""}`,
+            "data-parent": "#find-card"
+          });
+
+          let cardBody = $("<div>", {
+            class: "card-body"
+          });
+
+          anagram.anagrams.map(word => {
+            let anagramPara = $("<p>").text(word);
+            cardBody.append(anagramPara);
+          });
+
+          // add card body to collapsable div
+          collapseDiv.append(cardBody);
+
+          // append collapseDiv to parent div
+          cardParent.append(collapseDiv);
+        });
       })
       .catch(err => err);
   }
-
-  function drawTree() {}
 });
